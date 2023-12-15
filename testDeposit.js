@@ -12,7 +12,7 @@ const tokenContractAddress = '0xsomething'; // Token contract address you approv
 
 // Your Web3 provider
 const yourRpcUrl = 'wss://wss.api.moonriver.moonbeam.network'; // Moonriver's public RPC as example
-const web3 = new Web3(yourRpcUrl);
+const web3 = new Web3(yourRpcUrl); 
 
 // Wallet setup
 const privateKey = 'your tester address private key'; // Your private key of the address from which transaction comes from
