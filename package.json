@@ -1,0 +1,15 @@
+{
+    "name": "contract-tester",
+    "version": "1.0.0",
+    "description": "Script for testing deposit function of the smart contract",
+    "main": "index.js", 
+    "scripts": {
+      "start": "node testDeposit.js" 
+    },
+    "author": "cassieopeanuts",
+    "license": "MIT",
+    "dependencies": {
+      "web3": "^1.7.0" 
+    }
+  }
+  
