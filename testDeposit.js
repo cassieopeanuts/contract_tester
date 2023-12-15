@@ -4,17 +4,18 @@ const fs = require('fs');
 // Load ABIs
 const yourContractABI = JSON.parse(fs.readFileSync('your_contract_abi.json', 'utf-8'));
 const tokenContractABI = JSON.parse(fs.readFileSync('token_contract_abi.json', 'utf-8'));
+// Just put ABI files in the same directory
 
 // Contract addresses
 const yourContractAddress = '0xsomething'; // Your contract address
 const tokenContractAddress = '0xsomething'; // Token contract address you approving to spend
 
 // Your Web3 provider
-const moonriverRpcUrl = 'wss://wss.api.moonriver.moonbeam.network'; // Moonriver's public RPC as example
-const web3 = new Web3(moonriverRpcUrl);
+const yourRpcUrl = 'wss://wss.api.moonriver.moonbeam.network'; // Moonriver's public RPC as example
+const web3 = new Web3(yourRpcUrl);
 
 // Wallet setup
-const privateKey = 'your tester address private key'; // Private key of the address from which transaction comes from
+const privateKey = 'your tester address private key'; // Your private key of the address from which transaction comes from
 const account = web3.eth.accounts.privateKeyToAccount(privateKey);
 web3.eth.accounts.wallet.add(account);
 
@@ -29,7 +30,7 @@ async function approveTokens() {
         const approvalAmount = web3.utils.toWei('10', 'Tokens'); // Example amount is set for 10 tokens
         const estimatedGas = await yourContract.methods.deposit(approvalAmount).estimateGas({ from: account.address });
         console.log('Estimated Gas:', estimatedGas);
-        const gasLimit = Math.floor(estimatedGas * 1.2);
+        const gasLimit = Math.floor(estimatedGas * 1.2); // Estimated gas is multiplied by 1.2 to make actual gas limit 20% higher
    
         const approvalResult = await tokenContract.methods.approve(yourContractAddress, approvalAmount).send({ 
             from: account.address,
